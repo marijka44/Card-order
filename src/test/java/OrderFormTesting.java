@@ -17,13 +17,13 @@ public class OrderFormTesting {
 
 
     @BeforeAll
-    static void setUpAll(){
-        System.setProperty("webdriver.chrome.driver","driver/chromedriver.exe");
+    static void setUpAll() {
+        System.setProperty("webdriver.chrome.driver", "driver/chromedriver.exe");
     }
 
 
     @Test
-    void test(){
+    void test() {
         driver.get("http://localhost:9999");
         List<WebElement> elements = driver.findElements(By.className("input__control"));
         elements.get(0).sendKeys("Петров Иван");
@@ -31,41 +31,34 @@ public class OrderFormTesting {
         driver.findElement(By.className("checkbox__box")).click();
         driver.findElement(By.className("button_view_extra")).click();
         String text = driver.findElement(By.className("paragraph")).getText();
-        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.",text.trim());
+        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
 
 
     }
 
     @Test
-    void test1(){
+    void testCssSelector() {
         driver.get("http://localhost:9999");
-        driver.findElement(By.cssSelector("checkbox__box")).sendKeys("Петров Иван");
-        driver.findElement(By.cssSelector("button_view_extra")).sendKeys("+79254442233");
-
-
-       // List<WebElement> elements = driver.findElements(By.className("input__control"));
-   //     elements.get(0).sendKeys("Петров Иван");
-   //     elements.get(1).sendKeys("+79254442233");
-
-
+        driver.findElement(By.cssSelector("span[data-test-id='name'] input")).sendKeys("Петров Иван");
+        driver.findElement(By.cssSelector("span[data-test-id='phone'] input")).sendKeys("+79254442233");
         driver.findElement(By.className("checkbox__box")).click();
         driver.findElement(By.className("button_view_extra")).click();
         String text = driver.findElement(By.className("paragraph")).getText();
-        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.",text.trim());
+        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
 
 
     }
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         driver = new ChromeDriver();
 
     }
 
 
     @AfterEach
-    void tearDown(){
+    void tearDown() {
         driver.quit();
-        driver=null;
+        driver = null;
     }
 }
