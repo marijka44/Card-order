@@ -2,8 +2,14 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class OrderFormTesting {
 
@@ -19,11 +25,36 @@ public class OrderFormTesting {
     @Test
     void test(){
         driver.get("http://localhost:9999");
-        System.out.println();
+        List<WebElement> elements = driver.findElements(By.className("input__control"));
+        elements.get(0).sendKeys("Петров Иван");
+        elements.get(1).sendKeys("+79254442233");
+        driver.findElement(By.className("checkbox__box")).click();
+        driver.findElement(By.className("button_view_extra")).click();
+        String text = driver.findElement(By.className("paragraph")).getText();
+        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.",text.trim());
+
+
     }
 
+    @Test
+    void test1(){
+        driver.get("http://localhost:9999");
+        driver.findElement(By.cssSelector("checkbox__box")).sendKeys("Петров Иван");
+        driver.findElement(By.cssSelector("button_view_extra")).sendKeys("+79254442233");
 
 
+       // List<WebElement> elements = driver.findElements(By.className("input__control"));
+   //     elements.get(0).sendKeys("Петров Иван");
+   //     elements.get(1).sendKeys("+79254442233");
+
+
+        driver.findElement(By.className("checkbox__box")).click();
+        driver.findElement(By.className("button_view_extra")).click();
+        String text = driver.findElement(By.className("paragraph")).getText();
+        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.",text.trim());
+
+
+    }
 
     @BeforeEach
     void setUp(){
