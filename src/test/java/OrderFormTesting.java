@@ -53,19 +53,6 @@ public class OrderFormTesting {
 
 
     }
-
-    @Test
-    void testCssSelector() {
-        driver.get("http://localhost:9999");
-        driver.findElement(By.cssSelector("span[data-test-id='name'] input")).sendKeys("Петров Иван");
-        driver.findElement(By.cssSelector("span[data-test-id='phone'] input")).sendKeys("+79254442233");
-        driver.findElement(By.className("checkbox__box")).click();
-        driver.findElement(By.className("button_view_extra")).click();
-        String text = driver.findElement(By.className("paragraph")).getText();
-        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
-
-
-    }
-
+    
 
 }
