@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,9 +17,23 @@ public class OrderFormTesting {
     private WebDriver driver;
 
 
+
     @BeforeAll
     static void setUpAll() {
         System.setProperty("webdriver.chrome.driver", "driver/chromedriver.exe");
+    }
+
+    @BeforeEach
+    void setUp() {
+        driver = new ChromeDriver();
+
+    }
+
+
+    @AfterEach
+    void tearDown() {
+        driver.quit();
+        driver = null;
     }
 
 
@@ -49,16 +64,5 @@ public class OrderFormTesting {
 
     }
 
-    @BeforeEach
-    void setUp() {
-        driver = new ChromeDriver();
 
-    }
-
-
-    @AfterEach
-    void tearDown() {
-        driver.quit();
-        driver = null;
-    }
 }
